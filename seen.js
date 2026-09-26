@@ -1,4 +1,10 @@
-// seen.js：看一行（基线：不处理）
+// seen.js：读一行——去掉首尾空白，去空白后为空报 E_EMPTY_LINE
 export function readLine(line) {
-  return String(line);
+  const text = (line == null ? "" : String(line)).trim();
+  if (text === "") {
+    const error = new Error("去空白后为空行");
+    error.code = "E_EMPTY_LINE";
+    throw error;
+  }
+  return text;
 }
